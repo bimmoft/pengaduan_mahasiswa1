@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">pengaduan_mahasiswa</string>
+    <string name="selamat_datang">Selamat Datang</string>
+    <string name="jekson_karmela">Jekson Karmela</string>
+    <string name="apa_yang_kamu_cari_hari_ini">Apa yang kamu cari hari ini</string>
+    <string name="_5_beri_bukti_pendukung_yang_bisa_memperkuat_pengaduan">5. Beri bukti pendukung yang bisa memperkuat pengaduan</string>
+    <string name="panduan_pengaduan">Panduan Pengaduan</string>
+    <string name="_3_berikan_solusi_yang_diharapkan">3. Berikan solusi yang diharapkan</string>
+    <string name="_4_pilih_jenis_pengaduan_pembelajaran_akademik_sarana_amp_prasarana_keamanan"><![CDATA[4. Pilih jenis pengaduan (Pembelajaran, Akademik, Sarana & Prasarana, Keamanan)]]></string>
+    <string name="_2_masukkan_judul_dari_pengaduan">2. Masukkan judul dari pengaduan</string>
+    <string name="_1_masuk_kategori_pengaduan">1. Masuk kategori pengaduan</string>
+    <string name="todo">TODO</string>
+    <string name="to">TODO</string>
+    <string name="todo1">TODO</string>
+    <string name="kategori">kategori</string>
+    <string name="kalimat" />
+</resources>
