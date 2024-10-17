@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-</selector>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFF9E9" /> <!-- Warna latar belakang -->
+    <corners android:radius="20dp" /> <!-- Radius sudut, sesuaikan dengan kebutuhan -->
+    <stroke
+        android:width="2dp"
+        android:color="#FFEDB9" /> <!-- Warna garis tepi -->
+</shape>
