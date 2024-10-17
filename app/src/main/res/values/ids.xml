@@ -1,3 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <item name="text_kelana" type="id" />
+    <item name="subtitle" type="id" />
+    <item name="nama_pengadu" type="id" />
+    <item name="nomor_pengadu" type="id" />
+    <item name="judul_pengaduan" type="id" />
+    <item name="solusi_pengaduan" type="id" />
+    <item name="jenis_pengaduan" type="id" />
+    <item name="deskripsi_pengaduan" type="id" />
+    <item name="bukti_pengaduan" type="id" />
+    <item name="konfirmasi_button" type="id" />
+    <item name="detail_pengaduan" type="id" />
+    <item name="status_layout" type="id" />
 </resources>

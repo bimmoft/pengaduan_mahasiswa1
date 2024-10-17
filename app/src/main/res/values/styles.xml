@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Style untuk item dropdown -->
+    <style name="DropdownStyle">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">#3470A2</item>
+    </style>
+</resources>

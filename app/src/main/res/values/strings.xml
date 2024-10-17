@@ -14,4 +14,17 @@
     <string name="todo1">TODO</string>
     <string name="kategori">kategori</string>
     <string name="kalimat" />
+    <string name="_090312822271134">090312822271134</string>
+    <string name="title_text"><font color='#3470A2'>Pelacakan</font> <font color='#FFC727'>Pengaduan</font></string>
+    <string name="logo_description" />
+    <string name="back" />
+    <string name="done_icon" />
+    <string name="in_progress_icon" />
+    <string name="pending_icon" />
+    <string-array name="complaint_types">
+        <item>Keamanan</item>
+        <item>Sarana &amp; Prasarana</item>
+        <item>Akademik</item>
+        <item>Pembelajaran</item>
+    </string-array>
 </resources>

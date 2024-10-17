@@ -3,5 +3,8 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="colorDefault">#FFFFFF</color> <!-- Ganti dengan warna default -->
-    <color name="colorHover">#D3D3D3</color> <!-- Ganti dengan warna hover -->
+    <color name="colorHover">#D3D3D3</color>
+    <color name="yellow" />
+    <color name="black" />
+    <color name="blue" /> <!-- Ganti dengan warna hover -->
 </resources>
