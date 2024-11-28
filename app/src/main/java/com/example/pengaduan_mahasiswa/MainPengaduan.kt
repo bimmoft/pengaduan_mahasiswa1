@@ -3,7 +3,6 @@ package com.example.pengaduan_mahasiswa
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
@@ -16,6 +15,9 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -25,10 +27,16 @@ class PengaduanActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 1
     private val REQUEST_CAMERA_PERMISSION = 2
     private lateinit var currentPhotoPath: String
+    private lateinit var database: DatabaseReference
+    private lateinit var storage: FirebaseStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main1)
+
+        // Inisialisasi Firebase
+        database = FirebaseDatabase.getInstance().getReference("Pengaduan")
+        storage = FirebaseStorage.getInstance()
 
         setupAutoCompleteTextView()
         setupBackButton()
@@ -69,12 +77,12 @@ class PengaduanActivity : AppCompatActivity() {
     }
 
     private fun checkStoragePermission(): Boolean {
-        return checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+        return checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun requestPermissions() {
         requestPermissions(
-            arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+            arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE),
             REQUEST_CAMERA_PERMISSION
         )
     }
@@ -133,6 +141,38 @@ class PengaduanActivity : AppCompatActivity() {
             val bitmap = BitmapFactory.decodeFile(currentPhotoPath)
             imageView.setImageBitmap(bitmap)
             imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+
+            // Unggah foto ke Firebase Storage
+            val photoFile = File(currentPhotoPath)
+            val fileUri = Uri.fromFile(photoFile)
+            val fileName = photoFile.name
+            val storageRef = storage.reference.child("pengaduan_images/$fileName")
+
+            storageRef.putFile(fileUri)
+                .addOnSuccessListener {
+                    storageRef.downloadUrl.addOnSuccessListener { uri ->
+                        // Simpan data ke Firebase Realtime Database
+                        val jenisPengaduan = findViewById<AutoCompleteTextView>(R.id.autoCompleteTextView).text.toString()
+                        val pengaduanId = database.push().key ?: ""
+                        val pengaduanData = mapOf(
+                            "id" to pengaduanId,
+                            "jenis" to jenisPengaduan,
+                            "imageUrl" to uri.toString(),
+                            "timestamp" to System.currentTimeMillis()
+                        )
+                        database.child(pengaduanId).setValue(pengaduanData)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Toast.makeText(this, "Pengaduan berhasil disimpan!", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Toast.makeText(this, "Gagal menyimpan pengaduan.", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                    }
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Gagal mengunggah foto.", Toast.LENGTH_SHORT).show()
+                }
         } else {
             Toast.makeText(this, "Gambar tidak berhasil diambil.", Toast.LENGTH_SHORT).show()
         }

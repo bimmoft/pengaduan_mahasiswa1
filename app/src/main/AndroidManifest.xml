@@ -2,14 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Memastikan aplikasi dapat menggunakan fitur kamera -->
+    <!-- Izin yang diperlukan -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
 
-    <!-- Izin yang diperlukan untuk aplikasi -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -20,10 +20,9 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_kelana_logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Pengaduan_mahasiswa"
-        tools:targetApi="31">
+        android:theme="@style/Theme.Pengaduan_mahasiswa">
 
-        <!-- Provider untuk mengakses file menggunakan FileProvider -->
+        <!-- FileProvider -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -36,46 +35,23 @@
 
         <!-- Main Activity -->
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Pengaduan_mahasiswa">
+            android:theme="@style/Theme.Pengaduan_mahasiswa" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- Activity lainnya -->
-        <activity
-            android:name=".ProfileActivity"
-            android:exported="true"
-            android:label="Profile"
-            android:theme="@style/Theme.Pengaduan_mahasiswa" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true"
-            android:label="Login"
-            android:theme="@style/Theme.Pengaduan_mahasiswa" />
-        <activity
-            android:name=".PengaduanActivity"
-            android:exported="true"
-            android:label="Pengaduan"
-            android:theme="@style/Theme.Pengaduan_mahasiswa" />
-        <activity
-            android:name=".PelacakanActivity"
-            android:exported="true"
-            android:label="Pelacakan"
-            android:theme="@style/Theme.Pengaduan_mahasiswa" />
-        <activity
-            android:name=".NotifikasiActivity"
-            android:exported="true"
-            android:label="Notifikasi"
-            android:theme="@style/Theme.Pengaduan_mahasiswa" />
-        <activity
-            android:name=".FormActivity"
-            android:exported="true"
-            android:label="Form"
-            android:theme="@style/Theme.Pengaduan_mahasiswa" />
+        <!-- Aktivitas lain -->
+        <activity android:name=".ProfileActivity" android:exported="false" android:label="Profile" />
+        <activity android:name=".MainActivity" android:exported="false" android:label="Beranda" />
+        <activity android:name=".PengaduanActivity" android:exported="false" android:label="Pengaduan" />
+        <activity android:name=".PelacakanActivity" android:exported="false" android:label="Pelacakan" />
+        <activity android:name=".NotifikasiActivity" android:exported="false" android:label="Notifikasi" />
+        <activity android:name=".FormActivity" android:exported="false" android:label="Form" />
+        <activity android:name=".MainRegister" android:exported="true" android:label="Registrasi" />
     </application>
 </manifest>
