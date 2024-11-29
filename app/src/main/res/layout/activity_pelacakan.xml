@@ -85,6 +85,7 @@
 
             <!-- Right Section: Status -->
             <LinearLayout
+                android:id="@+id/linearLayoutPelacakan1"
                 android:layout_width="110dp"
                 android:layout_height="76dp"
                 android:layout_gravity="center"
@@ -220,9 +221,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/stroke"
             android:orientation="horizontal"
-            android:padding="16dp"
-            android:background="@drawable/stroke">
+            android:padding="16dp">
 
             <!-- Left Section: Complaint Details -->
             <LinearLayout
@@ -236,16 +237,16 @@
                     android:layout_height="wrap_content"
                     android:text="Keamanan"
                     android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:text="Judul Pengaduan: ada yang mengikuti saya terus menerus"
                     android:textColor="#ffffff"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <!-- Right Section: Status untuk Belum Dikonfirmasi -->

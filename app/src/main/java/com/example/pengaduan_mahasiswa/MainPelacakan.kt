@@ -14,10 +14,18 @@ class PelacakanActivity : AppCompatActivity() {
         // Ambil referensi ke back button dan linear layout
         val backButton: ImageView = findViewById(R.id.back_button)
         val linearLayoutPelacakan: LinearLayout = findViewById(R.id.linearLayoutPelacakan)
+        val linearLayoutPelacakan1: LinearLayout = findViewById(R.id.linearLayoutPelacakan1)
 
         // Aksi saat linearLayoutPelacakan diklik
         linearLayoutPelacakan.setOnClickListener {
             val intent = Intent(this, FormActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Aksi saat linearLayoutPelacakan1 diklik
+        linearLayoutPelacakan1.setOnClickListener {
+            // Misalnya membuka activity lain atau aksi tertentu
+            val intent = Intent(this, FormActivity1::class.java)
             startActivity(intent)
         }
 
