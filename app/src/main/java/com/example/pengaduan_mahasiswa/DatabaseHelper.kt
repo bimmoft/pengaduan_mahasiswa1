@@ -8,21 +8,19 @@ import android.database.sqlite.SQLiteOpenHelper
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
-        private const val DATABASE_NAME = "pengaduan.db"
+        private const val DATABASE_NAME = "pengaduan_db"
         private const val DATABASE_VERSION = 1
         private const val TABLE_NAME = "pengaduan"
-        private const val COLUMN_ID = "id"
-        private const val COLUMN_JENIS = "jenis"
-        private const val COLUMN_IMAGE_PATH = "image_path"
-        private const val COLUMN_TIMESTAMP = "timestamp"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val createTable = "CREATE TABLE $TABLE_NAME (" +
-                "$COLUMN_ID TEXT PRIMARY KEY," +
-                "$COLUMN_JENIS TEXT," +
-                "$COLUMN_IMAGE_PATH TEXT," +
-                "$COLUMN_TIMESTAMP INTEGER)"
+        val createTable = """
+            CREATE TABLE $TABLE_NAME (
+                ${Pengaduan.COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT,
+                ${Pengaduan.COLUMN_JENIS_PENGADUAN} TEXT,
+                ${Pengaduan.COLUMN_FOTO_URI} TEXT
+            )
+        """
         db?.execSQL(createTable)
     }
 
@@ -31,17 +29,13 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         onCreate(db)
     }
 
-    fun insertPengaduan(id: String, jenis: String, imagePath: String, timestamp: Long): Boolean {
+    fun insertPengaduan(pengaduan: Pengaduan): Boolean {
         val db = writableDatabase
         val values = ContentValues().apply {
-            put(COLUMN_ID, id)
-            put(COLUMN_JENIS, jenis)
-            put(COLUMN_IMAGE_PATH, imagePath)
-            put(COLUMN_TIMESTAMP, timestamp)
+            put(Pengaduan.COLUMN_JENIS_PENGADUAN, pengaduan.jenisPengaduan)
+            put(Pengaduan.COLUMN_FOTO_URI, pengaduan.fotoUri)
         }
         val result = db.insert(TABLE_NAME, null, values)
-        db.close()
         return result != -1L
     }
 }
-
