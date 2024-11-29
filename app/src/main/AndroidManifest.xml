@@ -53,5 +53,8 @@
         <activity android:name=".NotifikasiActivity" android:exported="false" android:label="Notifikasi" />
         <activity android:name=".FormActivity" android:exported="false" android:label="Form" />
         <activity android:name=".MainRegister" android:exported="true" android:label="Registrasi" />
+
+        <!-- Admin Activity -->
+        <activity android:name=".AdminActivity" android:exported="true" android:label="Admin" />
     </application>
 </manifest>

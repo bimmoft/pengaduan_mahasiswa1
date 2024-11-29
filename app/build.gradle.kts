@@ -78,6 +78,7 @@ dependencies {
     // Firebase Database dependency (Keep one)
     implementation("com.google.firebase:firebase-database:21.0.0")
     implementation(libs.firebase.storage.ktx)
+    implementation(libs.androidx.recyclerview)
 
     // Test dependencies
     testImplementation(libs.junit)

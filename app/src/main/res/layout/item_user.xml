@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Bagian Profil Admin -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/adminTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Admin Kelana"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="#3470A2"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"/>
+
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="Profile Image"
+                android:src="@drawable/ic_profile_placeholder" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                android:layout_margin="16dp"
+                android:background="#FFF9E9"
+                android:layout_below="@id/profile_image"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/logoImage"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/ic_kelana_logo"
+                        android:contentDescription="Logo Kelana"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="16dp"/>
+
+                    <TextView
+                        android:id="@+id/nameText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#3470A2"
+                        android:layout_marginBottom="8dp"/>
+
+                    <TextView
+                        android:id="@+id/nimText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NIM"
+                        android:textSize="14sp"
+                        android:textColor="#3470A2"
+                        android:layout_marginBottom="16dp"/>
+
+                    <Button
+                        android:id="@+id/deleteButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Delete User"
+                        android:layout_marginBottom="8dp"
+                        android:backgroundTint="#3470A2"
+                        android:textColor="#FFE088"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+        <!-- Tombol Logout di luar RecyclerView -->
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:text="Logout"
+            android:backgroundTint="#FFE088"
+            android:textColor="#3470A2"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+</ScrollView>

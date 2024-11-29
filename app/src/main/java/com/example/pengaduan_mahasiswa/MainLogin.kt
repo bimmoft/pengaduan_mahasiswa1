@@ -35,37 +35,47 @@ class LoginActivity : AppCompatActivity() {
             val password = passwordInput.text.toString().trim()
 
             if (name.isNotEmpty() && nim.isNotEmpty() && password.isNotEmpty()) {
-                // Cek apakah NIM sudah terdaftar di Firebase
-                database.orderByChild("nim").equalTo(nim).get().addOnSuccessListener { dataSnapshot ->
-                    if (dataSnapshot.exists()) {
-                        // NIM ditemukan, cek password
-                        val user = dataSnapshot.children.firstOrNull()
-                        if (user != null) {
-                            val storedPassword = user.child("password").getValue(String::class.java)
+                // Cek apakah username, password dan NIM sesuai dengan admin
+                if (name == "admin" && password == "admin" && nim == "123") {
+                    // Login Admin
+                    Toast.makeText(this, "Login Admin", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, AdminActivity::class.java) // Ganti dengan activity admin Anda
+                    startActivity(intent)
+                    finish()
+                } else {
+                    // Cek apakah NIM sudah terdaftar di Firebase
+                    database.orderByChild("nim").equalTo(nim).get()
+                        .addOnSuccessListener { dataSnapshot ->
+                            if (dataSnapshot.exists()) {
+                                // NIM ditemukan, cek password
+                                val user = dataSnapshot.children.firstOrNull()
+                                if (user != null) {
+                                    val storedPassword = user.child("password").getValue(String::class.java)
 
-                            if (storedPassword == password) {
-                                // Password cocok, lanjutkan ke MainActivity
-                                Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show()
-                                val intent = Intent(this, MainActivity::class.java)
-                                startActivity(intent)
-                                finish()
+                                    if (storedPassword == password) {
+                                        // Password cocok, lanjutkan ke MainActivity
+                                        Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show()
+                                        val intent = Intent(this, MainActivity::class.java)
+                                        startActivity(intent)
+                                        finish()
+                                    } else {
+                                        // Password salah
+                                        Toast.makeText(this, "Password salah.", Toast.LENGTH_SHORT).show()
+                                    }
+                                } else {
+                                    // Data pengguna tidak ditemukan meskipun NIM ditemukan
+                                    Toast.makeText(this, "Terjadi kesalahan, coba lagi.", Toast.LENGTH_SHORT).show()
+                                }
                             } else {
-                                // Password salah
-                                Toast.makeText(this, "Password salah.", Toast.LENGTH_SHORT).show()
+                                // NIM tidak ditemukan, arahkan ke registrasi
+                                Toast.makeText(this, "NIM tidak terdaftar, silakan registrasi.", Toast.LENGTH_SHORT).show()
+                                val intent = Intent(this, MainRegister::class.java)
+                                startActivity(intent)
                             }
-                        } else {
-                            // Data pengguna tidak ditemukan meskipun NIM ditemukan
+                        }.addOnFailureListener {
+                            // Jika terjadi kesalahan saat query ke Firebase
                             Toast.makeText(this, "Terjadi kesalahan, coba lagi.", Toast.LENGTH_SHORT).show()
                         }
-                    } else {
-                        // NIM tidak ditemukan, arahkan ke registrasi
-                        Toast.makeText(this, "NIM tidak terdaftar, silakan registrasi.", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, MainRegister::class.java)
-                        startActivity(intent)
-                    }
-                }.addOnFailureListener {
-                    // Jika terjadi kesalahan saat query ke Firebase
-                    Toast.makeText(this, "Terjadi kesalahan, coba lagi.", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 Toast.makeText(this, "Harap isi semua field.", Toast.LENGTH_SHORT).show()
